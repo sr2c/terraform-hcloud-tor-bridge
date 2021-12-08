@@ -18,3 +18,14 @@ variable "ssh_key_name" {
   type = string
   description = "Public SSH key name for provisioning. This SSH key must have already been created via the console."
 }
+
+variable "distribution_method" {
+  type = string
+  description = "Bridge distribution method"
+  default = "any"
+
+  validation {
+    condition     = contains(["https", "moat", "email", "none", "any"], var.distribution_method)
+    error_message = "Invalid distribution method. Valid choices are https, moat, email, none or any."
+  }
+}

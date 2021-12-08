@@ -22,7 +22,7 @@ resource "hcloud_server" "this" {
       "echo 'deb-src [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org buster main' | sudo tee -a /etc/apt/sources.list.d/tor.list",
       "wget -O- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | sudo tee /usr/share/keyrings/tor-archive-keyring.gpg >/dev/null",
       "sudo apt update",
-      "sudo apt install -y tor deb.torproject.org-keyring obfs4proxy"
+      "sudo apt install -y tor tor-geoipdb deb.torproject.org-keyring obfs4proxy"
     ]
   }
 
@@ -35,6 +35,7 @@ resource "hcloud_server" "this" {
     ExtORPort auto
     ContactInfo ${var.contact_info}
     Nickname ${replace(title(module.this.id), module.this.delimiter, "")}
+    BridgeDistribution ${var.distribution_method}
     EOT
     destination = "/etc/tor/torrc"
   }
