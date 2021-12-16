@@ -12,6 +12,7 @@ resource "hcloud_server" "this" {
   name        = module.this.id
   image       = "debian-10"
   server_type = "cx11"
+  datacenter  = var.datacenter
   ssh_keys    = [var.ssh_key_name]
 
   provisioner "remote-exec" {
@@ -52,8 +53,12 @@ resource "hcloud_server" "this" {
     host = self.ipv4_address
     type = "ssh"
     user = "root"
+    timeout = "5m"
   }
 
+  lifecycle {
+    ignore_changes = [datacenter]
+  }
 }
 
 module "bridgeline" {
