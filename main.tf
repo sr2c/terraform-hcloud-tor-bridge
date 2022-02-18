@@ -53,7 +53,7 @@ resource "hcloud_server" "this" {
   connection {
     host = self.ipv4_address
     type = "ssh"
-    user = "root"
+    user = var.ssh_user
     timeout = "5m"
   }
 

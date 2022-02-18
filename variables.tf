@@ -19,6 +19,12 @@ variable "ssh_key_name" {
   description = "Public SSH key name for provisioning. This SSH key must have already been created via the console."
 }
 
+variable "ssh_user" {
+  type = string
+  description = "Username to use for SSH access."
+  default = "root"
+}
+
 variable "distribution_method" {
   type = string
   description = "Bridge distribution method"
