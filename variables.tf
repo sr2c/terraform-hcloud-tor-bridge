@@ -21,7 +21,7 @@ variable "ssh_key_name" {
 
 variable "ssh_user" {
   type = string
-  description = "Username to use for SSH access."
+  description = "Username to use for SSH access (must have password-less sudo enabled)."
   default = "root"
 }
 

@@ -68,23 +68,23 @@ resource "hcloud_server" "this" {
 module "bridgeline" {
   source  = "matti/resource/shell"
   version = "1.5.0"
-  command = "ssh -o StrictHostKeyChecking=no root@${hcloud_server.this.ipv4_address} sudo cat /var/lib/tor/pt_state/obfs4_bridgeline.txt | tail -n 1"
+  command = "ssh -o StrictHostKeyChecking=no ${var.ssh_user}@${hcloud_server.this.ipv4_address} sudo cat /var/lib/tor/pt_state/obfs4_bridgeline.txt | tail -n 1"
 }
 
 module "fingerprint_ed25519" {
   source  = "matti/resource/shell"
   version = "1.5.0"
-  command = "ssh -o StrictHostKeyChecking=no root@${hcloud_server.this.ipv4_address} sudo cat /var/lib/tor/fingerprint-ed25519"
+  command = "ssh -o StrictHostKeyChecking=no ${var.ssh_user}@${hcloud_server.this.ipv4_address} sudo cat /var/lib/tor/fingerprint-ed25519"
 }
 
 module "fingerprint_rsa" {
   source  = "matti/resource/shell"
   version = "1.5.0"
-  command = "ssh -o StrictHostKeyChecking=no root@${hcloud_server.this.ipv4_address} sudo cat /var/lib/tor/fingerprint"
+  command = "ssh -o StrictHostKeyChecking=no ${var.ssh_user}@${hcloud_server.this.ipv4_address} sudo cat /var/lib/tor/fingerprint"
 }
 
 module "hashed_fingerprint" {
   source  = "matti/resource/shell"
   version = "1.5.0"
-  command = "ssh -o StrictHostKeyChecking=no root@${hcloud_server.this.ipv4_address} sudo cat /var/lib/tor/hashed-fingerprint"
+  command = "ssh -o StrictHostKeyChecking=no ${var.ssh_user}@${hcloud_server.this.ipv4_address} sudo cat /var/lib/tor/hashed-fingerprint"
 }
