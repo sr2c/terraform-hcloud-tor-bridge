@@ -1,3 +1,9 @@
+output "ansible_inventory" {
+  value = "${module.this.id} ansible_user=${var.ssh_user} ansible_host=${hcloud_server.this.ipv4_address}"
+  sensitive = true
+  description = "An Ansible inventory line that allows login to the bridge with the correct username."
+}
+
 output "bridgeline" {
   value = replace(
             replace(
