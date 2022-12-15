@@ -11,7 +11,7 @@ resource "random_integer" "or_port" {
 resource "hcloud_server" "this" {
   name        = module.this.id
   image       = "debian-11"
-  server_type = "cx11"
+  server_type = var.server_type
   datacenter  = var.datacenter
   ssh_keys    = [var.ssh_key_name]
 
@@ -29,7 +29,7 @@ resource "hcloud_server" "this" {
   }
 
   provisioner "file" {
-    content = <<-EOT
+    content     = <<-EOT
     BridgeRelay 1
     ORPort ${random_integer.or_port.result}
     ServerTransportPlugin obfs4 exec /usr/bin/obfs4proxy
@@ -51,11 +51,11 @@ resource "hcloud_server" "this" {
   }
 
   connection {
-    host = self.ipv4_address
-    type = "ssh"
-    user = var.ssh_user
+    host        = self.ipv4_address
+    type        = "ssh"
+    user        = var.ssh_user
     private_key = var.ssh_private_key
-    timeout = "5m"
+    timeout     = "5m"
   }
 
   lifecycle {
