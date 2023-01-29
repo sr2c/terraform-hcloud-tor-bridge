@@ -6,6 +6,7 @@
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
 | <a name="requirement_hcloud"></a> [hcloud](#requirement\_hcloud) | 1.31.1 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.1.0 |
+| <a name="requirement_tls"></a> [tls](#requirement\_tls) | 4.0.4 |
 
 ## Providers
 
@@ -13,16 +14,19 @@
 |------|---------|
 | <a name="provider_hcloud"></a> [hcloud](#provider\_hcloud) | 1.31.1 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.1.0 |
+| <a name="provider_tls"></a> [tls](#provider\_tls) | 4.0.4 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_bridgeline"></a> [bridgeline](#module\_bridgeline) | matti/resource/shell | 1.5.0 |
+| <a name="module_cloudinit"></a> [cloudinit](#module\_cloudinit) | sr2c/tor/cloudinit | 0.1.0 |
 | <a name="module_fingerprint_ed25519"></a> [fingerprint\_ed25519](#module\_fingerprint\_ed25519) | matti/resource/shell | 1.5.0 |
 | <a name="module_fingerprint_rsa"></a> [fingerprint\_rsa](#module\_fingerprint\_rsa) | matti/resource/shell | 1.5.0 |
 | <a name="module_hashed_fingerprint"></a> [hashed\_fingerprint](#module\_hashed\_fingerprint) | matti/resource/shell | 1.5.0 |
 | <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
+| <a name="module_torrc"></a> [torrc](#module\_torrc) | sr2c/torrc/null | 0.0.4 |
 
 ## Resources
 
@@ -31,6 +35,8 @@
 | [hcloud_server.this](https://registry.terraform.io/providers/hetznercloud/hcloud/1.31.1/docs/resources/server) | resource |
 | [random_integer.obfs_port](https://registry.terraform.io/providers/hashicorp/random/3.1.0/docs/resources/integer) | resource |
 | [random_integer.or_port](https://registry.terraform.io/providers/hashicorp/random/3.1.0/docs/resources/integer) | resource |
+| [hcloud_ssh_key.this](https://registry.terraform.io/providers/hetznercloud/hcloud/1.31.1/docs/data-sources/ssh_key) | data source |
+| [tls_public_key.this](https://registry.terraform.io/providers/hashicorp/tls/4.0.4/docs/data-sources/public_key) | data source |
 
 ## Inputs
 
@@ -55,8 +61,7 @@
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | ID element. Usually an abbreviation of your organization name, e.g. 'eg' or 'cp', to help ensure generated IDs are globally unique | `string` | `null` | no |
 | <a name="input_regex_replace_chars"></a> [regex\_replace\_chars](#input\_regex\_replace\_chars) | Terraform regular expression (regex) string.<br>Characters matching the regex will be removed from the ID elements.<br>If not set, `"/[^a-zA-Z0-9-]/"` is used to remove all characters other than hyphens, letters and digits. | `string` | `null` | no |
 | <a name="input_server_type"></a> [server\_type](#input\_server\_type) | Name of the server type to use for the compute instance. | `string` | `"cx11"` | no |
-| <a name="input_ssh_key_name"></a> [ssh\_key\_name](#input\_ssh\_key\_name) | Public SSH key name for provisioning. This SSH key must have already been created via the console. | `string` | n/a | yes |
-| <a name="input_ssh_private_key"></a> [ssh\_private\_key](#input\_ssh\_private\_key) | Private SSH key for provisioning. | `string` | n/a | yes |
+| <a name="input_ssh_private_key"></a> [ssh\_private\_key](#input\_ssh\_private\_key) | Filename of private SSH key for provisioning. | `string` | n/a | yes |
 | <a name="input_ssh_user"></a> [ssh\_user](#input\_ssh\_user) | Username to use for SSH access (must have password-less sudo enabled). | `string` | `"root"` | no |
 | <a name="input_stage"></a> [stage](#input\_stage) | ID element. Usually used to indicate role, e.g. 'prod', 'staging', 'source', 'build', 'test', 'deploy', 'release' | `string` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Additional tags (e.g. `{'BusinessUnit': 'XYZ'}`).<br>Neither the tag keys nor the tag values will be modified by this module. | `map(string)` | `{}` | no |

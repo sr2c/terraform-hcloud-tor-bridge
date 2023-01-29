@@ -14,14 +14,9 @@ variable "datacenter" {
   description = "Datacenter to deploy the instance in."
 }
 
-variable "ssh_key_name" {
-  type        = string
-  description = "Public SSH key name for provisioning. This SSH key must have already been created via the console."
-}
-
 variable "ssh_private_key" {
   type        = string
-  description = "Private SSH key for provisioning."
+  description = "Filename of private SSH key for provisioning."
 }
 
 variable "ssh_user" {

@@ -14,23 +14,16 @@ related:
 description: |-
   Deploy an obfs4 bridge to Hetzner Cloud.
 usage: |-
-  ```
-  provider "hcloud" {
-    token    = "<your token>"
-  }
-  
-  locals {
-    ssh_key = file("~/.ssh/id_rsa.pub")
-  }
-  
-    module "bridge" {
-    source = "git::https://gitlab.com/sr2c/terraform-hcloud-tor-obfs4-bridge.git?ref=master"
-    count = 1 # increase for more bridges
-    namespace = "<yourorg>"
-    name = "bridge"
-    attributes = [tostring(count.index)]
-    ssh_keypair_name = "<key name>" # must be created via the web console
-    contact_info = "<admin email address>"
+  ```hcl
+  module "bridge" {
+    source           = "sr2c/tor-bridge/hcloud"
+    # TODO: version  = "x.x.x"
+    count            = 1 # increase for more bridges
+    namespace        = "<yourorg>"
+    name             = "bridge"
+    attributes       = [tostring(count.index)]
+    ssh_private_key  = var.ssh_private_key
+    contact_info     = "<admin email address>"
   }
   ```
 include:

@@ -9,5 +9,9 @@ terraform {
       source  = "hetznercloud/hcloud"
       version = "1.31.1"
     }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "4.0.4"
+    }
   }
 }
