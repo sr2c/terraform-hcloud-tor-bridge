@@ -6,7 +6,7 @@ variable "contact_info" {
 variable "server_type" {
   type        = string
   description = "Name of the server type to use for the compute instance."
-  default     = "cx11"
+  default     = "cx22"
 }
 
 variable "datacenter" {
