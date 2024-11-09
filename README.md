@@ -106,7 +106,7 @@ module "bridge" {
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_bridgeline"></a> [bridgeline](#module\_bridgeline) | matti/resource/shell | 1.5.0 |
-| <a name="module_cloudinit"></a> [cloudinit](#module\_cloudinit) | sr2c/tor/cloudinit | 0.2.2 |
+| <a name="module_cloudinit"></a> [cloudinit](#module\_cloudinit) | sr2c/tor/cloudinit | 0.2.4 |
 | <a name="module_fingerprint_ed25519"></a> [fingerprint\_ed25519](#module\_fingerprint\_ed25519) | matti/resource/shell | 1.5.0 |
 | <a name="module_fingerprint_rsa"></a> [fingerprint\_rsa](#module\_fingerprint\_rsa) | matti/resource/shell | 1.5.0 |
 | <a name="module_hashed_fingerprint"></a> [hashed\_fingerprint](#module\_hashed\_fingerprint) | matti/resource/shell | 1.5.0 |
